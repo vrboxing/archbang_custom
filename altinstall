@@ -30,6 +30,13 @@ else
   exit 1
 fi
 
+wget https://github.com/ze-angry-wombat/archbang_custom/archive/master.zip ; \
+unzip master.zip
+sudo cp -rf archbang_custom-master/pacman.conf /etc/.
+sudo cp -rf archbang_custom-master/mirrorlist /etc/pacman.d/.
+sudo cp -rf archbang_custom-master/autostart /home/ablive/.config/openbox/.
+sudo cp -rf archbang_custom-master/menu.xml /home/ablive/.config/openbox/.
+sudo mv /home/ablive/Backgrounds /home/ablive/.config/backgrounds
 sudo pacman -Sy nilfs-utils
 
 LOG_ERR=/tmp/error_log
@@ -433,16 +440,9 @@ install_archbang(){
     # Install Additional Packages
     echo "Install additional packages"
     cd src ; \
-    wget https://github.com/ze-angry-wombat/archbang_custom/archive/master.zip ; \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt-git.tar.gz ; \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query-git.tar.gz ; \
-    unzip master.zip
-    sudo cp -rf archbang_custom-master/pacman.conf /etc/.
-    sudo cp -rf archbang_custom-master/mirrorlist /etc/pacman.d/.
-    sudo cp -rf archbang_custom-master/autostart /home/ablive/.config/openbox/.
-    sudo cp -rf archbang_custom-master/menu.xml /home/ablive/.config/openbox/.
-    sudo mv /home/ablive/Backgrounds /home/ablive/.config/backgrounds
-    
+        
     # Install base-devel (needed for AUR)
     sudo pacman -Sy --noconfirm --needed autoconf automake binutils bison fakeroot file \
     findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman \
