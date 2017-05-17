@@ -431,9 +431,17 @@ format_partitions(){
 install_archbang(){
   if ping -c 1 8.8.8.8 >/dev/null; then
     # Install Additional Packages
-    echo "Install additional packages (pacman stage1)"
-    sudo pacman -Sy --needed guake geany geany-plugins base-devel
+    echo "Install additional packages"
     cd src
+    wget https://github.com/ze-angry-wombat/archbang_custom/archive/master.zip
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt-git.tar.gz
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query-git.tar.gz
+    unzip master.zip
+    sudo cp -rf archbang_custom-master/pacman.conf /etc/.
+    sudo cp -rf archbang_custom-master/mirrorlist /etc/pacman.d/.
+    sudo cp -rf archbang_custom-master/autostart /home/ablive/.config/openbox/.
+    sudo cp -rf archbang_custom-master/menu.xml /home/ablive/.config/openbox/.
+    sudo pacman -Sy --needed guake geany geany-plugins base-devel git
     sudo -u ablive tar xvf package-query-git.tar.gz ; \
     cd package-query-git ; \
     sudo -u ablive makepkg -si ; \
