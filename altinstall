@@ -18,8 +18,10 @@
 # Run this script after your first boot with archlinux (as root)
 
 # Modified for ArchBang OpenRC by Mr Green mrgreen(at)archbang(dot)org
-
 # Version 0.3 25-04-17
+
+# Modified for BangersBall OpenRC by Arrogantwombaticus arrogantwombaticus(at)gmail(dot)com
+# Version 0.0.1 17-05-17
 
 if [[ -f /usr/bin/sharedfuncs ]]; then
   source sharedfuncs
@@ -27,6 +29,8 @@ else
   echo "missing file: sharedfuncs"
   exit 1
 fi
+
+sudo pacman -Sy nilfs-utils
 
 LOG_ERR=/tmp/error_log
 touch $LOG_ERR
@@ -425,23 +429,22 @@ format_partitions(){
 #}}}
 # Fast-Install {{{
 install_archbang(){
-  if ping -q -c 1 -W 8.8.8.8 >/dev/null; then
+  if ping -c 1 8.8.8.8 >/dev/null; then
     # Install Additional Packages
     echo "Install additional packages (pacman stage1)"
     sudo pacman -Sy --needed guake geany geany-plugins base-devel
     cd src
-    tar xvf package-query-git.tar.gz
-    cd package-query-git
-    makepkg -si -noconfirm
-    cd ../
-    rm -rf package-query-git
-    tar xvf yaourt-git.tar.gz
-    cd yaourt-git
-    makepkg -si -noconfirm
-    cd ../
-    rm -rf yaourt-git
-    yaourt -Sy --noconfirm google-chrome-dev netctl-git yaourt-gui kodi-platform \
-    atom-editor-bin cairo-compmgr
+    sudo -u ablive tar xvf package-query-git.tar.gz ; \
+    cd package-query-git ; \
+    sudo -u ablive makepkg -si ; \
+    cd /home/ablive/src ; 
+    rm -rf package-query-git ; \
+    sudo -u ablive tar xvf yaourt-git.tar.gz ; \
+    cd yaourt-git ; \
+    sudo -u ablive makepkg -si ; \
+    cd /home/ablive/src ; \ 
+    rm -rf yaourt-git ; \ 
+    sudo -u ablive yaourt -Sy google-chrome-dev netcfg-git yaourt-gui kodi-platform atom-editor-bin cairo-compmgr
     pacman -Syyuu --noconfirm
     # Device mounted?
     if ! mountpoint -q /mnt; then
