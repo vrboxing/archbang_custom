@@ -439,7 +439,7 @@ install_archbang(){
   if ping -c 1 8.8.8.8 >/dev/null; then
     # Install Additional Packages
     echo "Install additional packages"
-    cd src ; \
+    mkdir src ; cd src ; \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt-git.tar.gz ; \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query-git.tar.gz ; \
         
