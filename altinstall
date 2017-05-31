@@ -68,9 +68,6 @@ if ping -c 1 8.8.8.8 >/dev/null; then
     rm -rf yaourt-git ; \
     # Install Google, netcfg (replaces systemd netctl), yaourt-gui, kodi (media player), atom and composite manager
     sudo -u ablive yaourt -Sy google-chrome-dev netcfg-git yaourt-gui kodi-platform atom-editor-bin cairo-compmgr
-    
-    # Update the complete system
-    pacman -Syyuu --noconfirm
 else
     echo "No internet Connection"
 fi
@@ -480,11 +477,17 @@ install_archbang(){
 
     # check for root
     [[ ${EUID} -ne 0 ]] && echo "::This script must be run as root::" && exit 1
-
+.
     # Variables
     ACM="arch-chroot /mnt"
     ROOT_DEV=$(df | grep -w /mnt | awk {'print $1'})
 
+    # Update the complete system
+    # This MUST be done after the filesystem is mounted but before the install
+    # of the system to avoid loading a newer kernel which prevents filesystems
+    # from mounting properly.
+    pacman -Syyuu --noconfirm
+ 
     # copy live iso environment to /mnt (new install device)
     echo "Copy live root image to /mnt "
     cp -ax / /mnt
