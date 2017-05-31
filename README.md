@@ -5,7 +5,7 @@
 * Unzip the package and run chmod a+x altinstall
 * If you wish to edit any packages that get install you may do so, they are at the top of altinstall (nano altinstall)
 * cp altinstall /usr/bin/.
-* Then just type altinstall and it will start installing apps
+* Then just type sudo altinstall and it will start installing apps
 * After the apps comes the actual menu for installing the system
 * Go through the steps and install the system.
 * Reboot and welcome to the custom ArchBang
