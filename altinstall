@@ -31,7 +31,7 @@ else
 fi
 
 if ping -c 1 8.8.8.8 >/dev/null; then
-    mkdir /home/ablive/src ; cd /home/ablive/src ; \
+    sudo -u ablive mkdir /home/ablive/src ; cd /home/ablive/src ; \
     wget https://github.com/ze-angry-wombat/archbang_custom/archive/master.zip ; \
     unzip master.zip
     sudo cp -rf archbang_custom-master/pacman.conf /etc/.
