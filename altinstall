@@ -483,11 +483,9 @@ install_archbang(){
     ROOT_DEV=$(df | grep -w /mnt | awk {'print $1'})
 
     # Update the complete system
-    # This MUST be done after the filesystem is mounted but before the install
-    # of the system to avoid loading a newer kernel which prevents filesystems
-    # from mounting properly.
-    pacman -Syyuu --noconfirm
- 
+    # This keeps breaking the install removing for now
+    # sudo pacman -Syyuu
+    
     # copy live iso environment to /mnt (new install device)
     echo "Copy live root image to /mnt "
     cp -ax / /mnt
