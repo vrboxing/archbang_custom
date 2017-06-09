@@ -39,7 +39,7 @@ if ping -c 1 8.8.8.8 >/dev/null; then
     sudo cp -rf archbang_custom-master/autostart /home/ablive/.config/openbox/.
     sudo cp -rf archbang_custom-master/menu.xml /home/ablive/.config/openbox/.
     sudo mv /home/ablive/Backgrounds /home/ablive/.config/backgrounds
-    sudo pacman -Sy nilfs-utils
+    sudo pacman -Sy --needed --noconfirm nilfs-utils
 
     # Install Additional Packages
     echo "Install additional packages"
@@ -48,26 +48,27 @@ if ping -c 1 8.8.8.8 >/dev/null; then
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query-git.tar.gz ; \
         
     # Install base-devel (needed for AUR)
-    sudo pacman -Sy --noconfirm --needed autoconf automake binutils bison fakeroot file \
+    sudo pacman -S --noconfirm --needed autoconf automake binutils bison fakeroot file \
     findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman \
     patch pkg-config sed sudo texinfo which clang llvm lldb
     
     # Install dev tools and a proper terminal
-    sudo pacman -Sy --needed --noconfirm guake geany geany-plugins git
+    sudo pacman -S --needed --noconfirm guake geany geany-plugins git
     
     # Install AUR support tools
     sudo -u ablive tar xvf package-query-git.tar.gz ; \
     cd package-query-git ; \
-    sudo -u ablive makepkg -si ; \
+    sudo -u ablive makepkg -si --noconfirm ; \
     cd /home/ablive/src ; \
     rm -rf package-query-git ; \
     sudo -u ablive tar xvf yaourt-git.tar.gz ; \
     cd yaourt-git ; \
-    sudo -u ablive makepkg -si ; \
+    sudo -u ablive makepkg -si --noconfirm ; \
     cd /home/ablive/src ; \ 
     rm -rf yaourt-git ; \
     # Install Google, netcfg (replaces systemd netctl), yaourt-gui, kodi (media player), atom and composite manager
-    sudo -u ablive yaourt -Sy google-chrome-dev netcfg-git yaourt-gui kodi-platform atom-editor-bin cairo-compmgr
+    sudo -u ablive yaourt -S --noconfirm google-chrome-dev yaourt-gui kodi-platform atom-editor-bin cairo-compmgr
+    sudo -u ablive yaourt -S netctl-git
 else
     echo "No internet Connection"
 fi
