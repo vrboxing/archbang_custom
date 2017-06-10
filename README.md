@@ -1,11 +1,11 @@
 # Custom ArchBang Install Script
 * First thing you will need is the latest ArchBang installer (https://sourceforge.net/projects/archbang/files/ArchBang-OpenRC/), I do not have anything to do with the development of ArchBang, my goal is just to make it more usable for me.
 * Boot to the installer and connect to the internet
-* Navigate to https://github.com/ze-angry-wombat/archbang_custom and download the zip
+* Navigate to https://github.com/ze-angry-wombat/abinstaller and download the zip
 * Unzip the package, cd into the resulting directory, and run chmod a+x altinstall
 * If you wish to edit any packages that get install you may do so, they are at the top of altinstall (nano altinstall)
 * cp altinstall /usr/bin/.
-* (I clean up my Downloads directory at this point as the script will re-download the zip folder)
+* (I clean up my Downloads directory at this point)
 * Then just type sudo altinstall and it will start installing apps (NOTE :: I install netctl-git to replace netcfg it will ask if you are sure you want to replace this program, I always answer yes because, if not, on first update netcfg will pull in systemd and I am aiming for a completely systemd OS here)
 * After the apps, comes the actual menu for installing the system
 * Go through the steps and install the system.
