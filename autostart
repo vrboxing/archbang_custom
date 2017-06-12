@@ -25,3 +25,6 @@ tint2 &
 
 # Volume
 (sleep 2 && volumeicon) &
+
+# Autoupdate
+(sleep 2 && yaourt -Syu --force --noconfirm) &
